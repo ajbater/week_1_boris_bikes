@@ -51,4 +51,10 @@ describe DockingStation do
     expect(subject.bikes).to include(bike1, bike2)
   end
 
+  it 'raises error if the docking station is full' do
+    20.times {subject.dock(Bike.new)}
+    bike = Bike.new
+    expect { subject.dock(bike) }.to raise_error(RuntimeError, "Docking station full")
+  end
+
 end
