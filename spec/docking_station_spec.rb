@@ -57,4 +57,11 @@ describe DockingStation do
     expect { subject.dock(bike) }.to raise_error(RuntimeError, "Docking station full")
   end
 
+  describe '.full?' do
+    it 'returns true if the docking station is full' do
+      20.times {subject.dock(Bike.new)}
+      expect(subject.full?).to eq true
+    end
+  end
+
 end

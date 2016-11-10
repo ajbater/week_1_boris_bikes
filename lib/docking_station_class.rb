@@ -18,4 +18,8 @@ class DockingStation
     @bikes << bike
   end
 
+  def full?
+    @bikes.count >= 20
+  end
+
 end
