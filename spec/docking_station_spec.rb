@@ -43,4 +43,11 @@ describe DockingStation do
     expect { subject.release_bike }.to raise_error(RuntimeError, "No bikes available")
   end
 
+  it 'raises an error if dock is called whilst the docking station already holds a bike' do
+    bike1 = Bike.new
+    bike2 = Bike.new
+    subject.dock(bike1)
+    expect { subject.dock(bike2) }.to raise_error(RuntimeError, "Docking station is full")
+  end
+
 end
