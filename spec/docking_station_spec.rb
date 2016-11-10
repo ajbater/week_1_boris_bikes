@@ -52,14 +52,14 @@ describe DockingStation do
   end
 
   it 'raises error if the docking station is full' do
-    20.times {subject.dock(Bike.new)}
+    DockingStation::DEFAULT_CAPACITY.times {subject.dock(Bike.new)}
     bike = Bike.new
     expect { subject.dock(bike) }.to raise_error(RuntimeError, "Docking station full")
   end
 
   describe '.check_full?' do
     it 'returns true if the docking station is full' do
-      20.times {subject.dock(Bike.new)}
+      DockingStation::DEFAULT_CAPACITY.times {subject.dock(Bike.new)}
       expect(subject.check_full?).to eq true
     end
 
@@ -77,6 +77,10 @@ describe DockingStation do
       subject.dock(Bike.new)
       expect(subject.check_empty?).to eq false
     end
+  end
+
+  it 'checks that DEFAULT_CAPACITY has been set and is an integer' do
+    expect(DockingStation::DEFAULT_CAPACITY).to be_kind_of(Integer)
   end
 
 end
