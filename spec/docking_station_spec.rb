@@ -57,10 +57,25 @@ describe DockingStation do
     expect { subject.dock(bike) }.to raise_error(RuntimeError, "Docking station full")
   end
 
-  describe '.full?' do
+  describe '.check_full?' do
     it 'returns true if the docking station is full' do
       20.times {subject.dock(Bike.new)}
-      expect(subject.full?).to eq true
+      expect(subject.check_full?).to eq true
+    end
+
+    it 'returns false if the docking station is not full' do
+      expect(subject.check_full?).to eq false
+    end
+  end
+
+  describe '.check_empty?' do
+    it 'returns true if the docking station is empty' do
+      expect(subject.check_empty?).to eq true
+    end
+
+    it 'returns false if the docking station is not empty' do
+      subject.dock(Bike.new)
+      expect(subject.check_empty?).to eq false
     end
   end
 
