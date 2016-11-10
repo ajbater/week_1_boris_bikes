@@ -83,4 +83,14 @@ describe DockingStation do
     expect(DockingStation::DEFAULT_CAPACITY).to be_kind_of(Integer)
   end
 
+  it 'allows the user to set capacity when a new DockingStation is instantiated' do
+    station = DockingStation.new(30)
+    expect(station.capacity).to eq 30
+  end
+
+  it 'checks that capacity equals DEFAULT_CAPACITY when no default value is set' do
+    station = DockingStation.new
+    expect(station.capacity).to eq DockingStation::DEFAULT_CAPACITY
+  end
+
 end
