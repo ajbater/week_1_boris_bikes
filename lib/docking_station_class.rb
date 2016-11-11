@@ -22,7 +22,7 @@ class DockingStation
   end
 
   def check_full?
-    full?
+    full? 
   end
 
   def check_empty?
