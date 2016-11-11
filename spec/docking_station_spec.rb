@@ -93,4 +93,17 @@ describe DockingStation do
     expect(station.capacity).to eq DockingStation::DEFAULT_CAPACITY
   end
 
+  it 'will not release a broken bike' do
+    bike1 = Bike.new
+    bike2 = Bike.new
+    bike3 = Bike.new
+    bike1.broken
+    bike3.broken
+    subject.dock(bike1)
+    subject.dock(bike2)
+    subject.dock(bike3)
+    subject.release_bike
+    expect{ subject.release_bike }.to raise_error(RuntimeError, 'No bikes available')
+  end
+
 end
