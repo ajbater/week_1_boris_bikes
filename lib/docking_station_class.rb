@@ -12,7 +12,7 @@ class DockingStation
   attr_reader :bikes, :capacity
 
   def release_bike
-    raise "No bikes available" if empty?
+    raise "No bikes available" if empty_working?
     working_bike = @bikes.select { |bike| bike.working? }.pop
     @bikes.delete(working_bike)
   end
@@ -36,7 +36,12 @@ private
   end
 
   def empty?
-    @bikes.select { |bike| bike.working? }.empty?
+    #@bikes.select { |bike| bike.working? }.empty?
+    @bikes.count == 0
+  end
+
+  def empty_working?
+    @bikes.select { |bike| bike.working? }.count == 0
   end
 
 end
