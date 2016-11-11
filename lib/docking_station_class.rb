@@ -32,8 +32,9 @@ class DockingStation
 
   def release_broken_bike
     # raise "No bikes available" if empty_working?
-    broken_bike = @bikes.reject { |bike| bike.working? }.pop
+    broken_bike = @bikes.reject { |bike| bike.working? }
     @bikes.delete(broken_bike)
+    broken_bike
   end
 
 

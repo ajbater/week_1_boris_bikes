@@ -113,7 +113,7 @@ describe DockingStation do
     allow_true
     subject.dock(broken_bike)
     subject.dock(bike)
-    expect( subject.release_broken_bike ).to eq broken_bike
+    expect( subject.release_broken_bike ).to eq [broken_bike]
   end
 
   def allow_true
