@@ -30,6 +30,13 @@ class DockingStation
     empty?
   end
 
+  def release_broken_bike
+    # raise "No bikes available" if empty_working?
+    broken_bike = @bikes.reject { |bike| bike.working? }.pop
+    @bikes.delete(broken_bike)
+  end
+
+
 private
   def full?
     @bikes.count >= DEFAULT_CAPACITY
